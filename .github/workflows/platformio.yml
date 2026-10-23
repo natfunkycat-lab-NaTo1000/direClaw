@@ -2,30 +2,26 @@ name: PlatformIO firmware build
 
 on:
   push:
-    branches: ["main"]
+    branches: [ "main" ]
   pull_request:
-    branches: ["main"]
+    branches: [ "main" ]
 
 permissions:
   contents: read
 
 jobs:
   build:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-latest, windows-latest]
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v6
+      - uses: actions/setup-python@v5
         with:
-          python-version: "3.x"
+          python-version: "3.12"
 
       - name: Install PlatformIO
-        run: python -m pip install platformio
+        run: python -m pip install platformio==6.2.0
 
       - name: Build firmware
-        run: pio run
+        run: pio run -e esp32-c6 -e esp32-s3 -e esp32-c3
