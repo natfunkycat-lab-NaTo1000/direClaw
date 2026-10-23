@@ -1,0 +1,94 @@
+{
+  "generatedAt": "2026-10-06T17:31:44.838Z",
+  "app": "esp-terminator",
+  "redacted": true,
+  "fullLogsIncluded": false,
+  "device": {
+    "chipType": "ESP32-S3",
+    "chipId": "9 (0x09)",
+    "macAddress": "[REDACTED_MAC]",
+    "features": [
+      "Wi-Fi",
+      "BLE",
+      "Embedded Flash 8MB (GD)"
+    ],
+    "flashSize": "8MB",
+    "crystal": "40MHz"
+  },
+  "selectedFirmware": {
+    "name": "Heltec V3",
+    "version": "v2.2",
+    "type": "ghostesp",
+    "device": "ESP32-S3"
+  },
+  "flashResult": null,
+  "healthCheckResult": null,
+  "postFlashMonitor": {
+    "status": "idle",
+    "bootDetected": false,
+    "appDetected": false,
+    "capturing": false,
+    "lines": []
+  },
+  "preflight": {
+    "checks": [
+      {
+        "label": "Device connected",
+        "ok": true,
+        "detail": "ESP32-S3"
+      },
+      {
+        "label": "Firmware selected",
+        "ok": true,
+        "detail": "Heltec V3 (ESP32-S3)"
+      },
+      {
+        "label": "ESP preflight",
+        "ok": true,
+        "detail": "Will validate at flash start after firmware files are prepared"
+      }
+    ],
+    "errors": []
+  },
+  "usbDiagnostics": null,
+  "logs": [
+    "> System initialized",
+    "> Waiting for device connection...",
+    "> Port selected via UI and stored.",
+    "> Cleared queued firmware for the newly selected device.",
+    "📱 ESP32 firmware selected: Heltec V3",
+    "✅ Single firmware file ready for flashing - click 'FLASH FIRMWARE' to begin",
+    "> [handleFirmwareSelected] Attempting to load config associated with firmware's device: ESP32-S3...",
+    "> [loadDeviceConfiguration] Attempting to load config for: esp32-s3 (original: ESP32-S3) from device-configs/esp32-s3.json",
+    "> [loadDeviceConfiguration] Successfully loaded config for esp32-s3: {\"flashMode\":\"dio\",\"flashFrequency\":\"80m\",\"flashSize\":\"8MB\",\"baudRate\":921600}",
+    "> [handleFirmwareSelected] Updated chip default baud rate from firmware's device config: 921600",
+    "> [handleFirmwareSelected] Applied device config for selected firmware's device (ESP32-S3). New config: {\"flashMode\":\"dio\",\"flashFrequency\":\"80m\",\"flashSize\":\"8MB\",\"eraseAll\":true,\"baudRate\":921600}",
+    "> Connecting to device...",
+    "> Port VID: 0x10c4, PID: 0xea60",
+    "> Auto mode: Starting with ESP32 detection (most common)...",
+    "> Strategy 1: Standard ESP32 connection with auto-reset...",
+    "> Port appears to already be open, closing first...",
+    "> ✓ Transport created",
+    "> Using chip profile: ESP32-S3.",
+    "> ✅ Standard ESP32 connection successful!",
+    "> Device connected successfully!",
+    "> Detecting flash size from hardware...",
+    "> SPI flash JEDEC ID: 0x1740C8; density code 0x17 = 8MB",
+    "> Device: ESP32-S3, MAC: [REDACTED_MAC], Image Chip ID: 9 (0x09)",
+    "> [loadDeviceConfiguration] Attempting to load config for: esp32-s3 (original: ESP32-S3) from device-configs/esp32-s3.json",
+    "> [loadDeviceConfiguration] Successfully loaded config for esp32-s3: {\"flashMode\":\"dio\",\"flashFrequency\":\"80m\",\"flashSize\":\"8MB\",\"baudRate\":921600}",
+    "> Applied device-specific config (with auto-detected hardware properties): {\"flashMode\":\"dio\",\"flashFrequency\":\"80m\",\"flashSize\":\"8MB\",\"eraseAll\":true,\"baudRate\":921600}",
+    "[handleErase] Erase operation started by user.",
+    "[handleErase] esploader.chip found: ESP32-S3. Attempting pre-erase MAC read...",
+    "[handleErase] Pre-erase MAC read successful: [REDACTED_MAC]",
+    "[handleErase] Pre-erase MAC read OK. Proceeding to call esploader.eraseFlash(). Please wait...",
+    "Erasing flash memory. Please wait...",
+    "> Erase command will use stub's current speed. Configured/default baud for logging: 921600",
+    "Finished. Took <font color=\"yellow\">3949ms</font> to erase.",
+    "---> ERASE PROCESS COMPLETED!"
+  ],
+  "environment": {
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36 Edg/154.0.0.0",
+    "webSerialSupported": true
+  }
+}
