@@ -72,6 +72,10 @@ scripts/wc.sh orchestrate @plan.json
 scripts/wc-companion.sh pinmap
 scripts/wc-companion.sh flash --port /dev/ttyACM0
 scripts/wc-companion.sh prepare-assets --splash ./image-4.jpg --background ./image-2.jpg
+
+# PC/mobile link-up validation + side-task transfer capture
+scripts/wc-linkup.sh validate --device wireclaw-01 --require-auth
+scripts/wc-linkup.sh side-task --device wireclaw-01 --prompt "Investigate sensor drift today"
 ```
 
 You can use either the wrapper or raw `nats req` commands - both work identically.

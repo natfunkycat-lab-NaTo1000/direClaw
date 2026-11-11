@@ -86,6 +86,16 @@ Generated files:
 - `background.rgb565`
 - `manifest.json`
 
+## Link-Up Validation and Remote Access
+
+Use the secure link-up helper for WiFi/BLE/radio visibility checks, side-task
+transfer capture, and Tailscale/SSH reachability:
+
+```bash
+skill/wireclaw/scripts/wc-linkup.sh validate --device wireclaw-01 --require-auth
+skill/wireclaw/scripts/wc-linkup.sh security-check --require-auth --require-tailscale --require-ssh
+```
+
 ## Design Notes
 
 - Keep **GPS on UART1** and **radios on SPI** to avoid UART contention.

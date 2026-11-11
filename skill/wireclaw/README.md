@@ -67,6 +67,10 @@ scripts/wc.sh orchestrate @plan.json --json
 scripts/wc-companion.sh pinmap
 scripts/wc-companion.sh flash --port /dev/ttyACM0
 scripts/wc-companion.sh prepare-assets --splash ./image-4.jpg --background ./image-2.jpg
+
+# Link-up validation + secure side-task capture (PC/mobile)
+scripts/wc-linkup.sh validate --device wireclaw-01 --require-auth
+scripts/wc-linkup.sh side-task --device wireclaw-01 --prompt "Investigate sensor drift today"
 ```
 
 Plan highlights:
