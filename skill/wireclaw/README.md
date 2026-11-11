@@ -62,6 +62,10 @@ scripts/wc.sh orchestrate @plan.json --max-parallel 8 --timeout 12s --log-file .
 
 # Machine-readable summary output
 scripts/wc.sh orchestrate @plan.json --json
+
+# CYD 2432S028R + ESP32-S3 Nano companion helper
+scripts/wc-companion.sh pinmap
+scripts/wc-companion.sh flash --port /dev/ttyACM0
 ```
 
 Plan highlights:

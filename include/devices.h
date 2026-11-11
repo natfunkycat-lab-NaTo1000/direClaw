@@ -122,7 +122,11 @@ void parseNatsPayload(const uint8_t *data, size_t len,
 /* --- Serial text UART (one device max, fixed pins per chip) --- */
 
 /* Fixed UART1 pins per chip variant */
-#if defined(CONFIG_IDF_TARGET_ESP32C6)
+#if !defined(SERIAL_TEXT_RX) || !defined(SERIAL_TEXT_TX)
+#if defined(WIRECLAW_SERIAL_TEXT_RX) && defined(WIRECLAW_SERIAL_TEXT_TX)
+#define SERIAL_TEXT_RX  WIRECLAW_SERIAL_TEXT_RX
+#define SERIAL_TEXT_TX  WIRECLAW_SERIAL_TEXT_TX
+#elif defined(CONFIG_IDF_TARGET_ESP32C6)
 #define SERIAL_TEXT_RX  4
 #define SERIAL_TEXT_TX  5
 #elif defined(CONFIG_IDF_TARGET_ESP32S3)
@@ -134,6 +138,7 @@ void parseNatsPayload(const uint8_t *data, size_t len,
 #else
 #define SERIAL_TEXT_RX  16
 #define SERIAL_TEXT_TX  17
+#endif
 #endif
 
 void serialTextInit(uint32_t baud);
