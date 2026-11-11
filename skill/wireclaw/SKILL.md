@@ -61,9 +61,34 @@ scripts/wc.sh discover
 
 # Subscribe to a device's event stream
 scripts/wc.sh sub <device>
+
+# Generate a governance orchestration plan template
+scripts/wc.sh plan-template
+
+# Run a multi-level orchestration plan (inline JSON or @file)
+scripts/wc.sh orchestrate @plan.json
 ```
 
 You can use either the wrapper or raw `nats req` commands - both work identically.
+
+### Governance orchestration mode
+
+`wc.sh orchestrate` executes a top-down multi-level plan with per-level
+governance ordinance and serial/parallel orchestration.
+
+Supported orchestration controls:
+- `mode`: `series` or `parallel` per level
+- `ordinance.on_error`: `halt` or `continue`
+- `ordinance.min_success_ratio`: number from `0..1`
+- `max_parallel`: optional per-level parallel worker cap
+- Vectorized multiplexing via `tasks[].vectors[]`
+- Device fan-out via `tasks[].device` string or string array
+
+Useful flags:
+- `--dry-run` to validate/expand without dispatching NATS tool calls
+- `--json` for machine-readable output
+- `--log-file <path>` to persist the full execution report
+- `--max-parallel <n>` global worker cap for parallel levels
 
 ## Discovery
 
