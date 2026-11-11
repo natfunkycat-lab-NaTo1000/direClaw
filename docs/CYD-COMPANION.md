@@ -65,6 +65,27 @@ skill/wireclaw/scripts/wc-companion.sh pinmap
 skill/wireclaw/scripts/wc-companion.sh pinmap-json
 ```
 
+## Splash + Background Asset Pack
+
+Use your provided art as splash/background and generate CYD-ready RGB565 files:
+
+```bash
+pip install pillow
+
+skill/wireclaw/scripts/wc-companion.sh prepare-assets \
+  --splash ./image-4.jpg \
+  --background ./image-2.jpg \
+  --out-dir ./assets/cyd/generated
+```
+
+For alternate themes (for example the NIA pixel variants), re-run with different
+`--splash` / `--background` inputs.
+
+Generated files:
+- `splash.rgb565`
+- `background.rgb565`
+- `manifest.json`
+
 ## Design Notes
 
 - Keep **GPS on UART1** and **radios on SPI** to avoid UART contention.

@@ -358,6 +358,7 @@ For CYD 2432S028R + ESP32-S3 Nano companion wiring/flash shortcuts, use:
 ```bash
 skill/wireclaw/scripts/wc-companion.sh pinmap
 skill/wireclaw/scripts/wc-companion.sh flash --port /dev/ttyACM0
+skill/wireclaw/scripts/wc-companion.sh prepare-assets --splash ./image-4.jpg --background ./image-2.jpg
 ```
 
 Type a message and press Enter. Or open Telegram and text your bot.

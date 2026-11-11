@@ -66,6 +66,7 @@ scripts/wc.sh orchestrate @plan.json --json
 # CYD 2432S028R + ESP32-S3 Nano companion helper
 scripts/wc-companion.sh pinmap
 scripts/wc-companion.sh flash --port /dev/ttyACM0
+scripts/wc-companion.sh prepare-assets --splash ./image-4.jpg --background ./image-2.jpg
 ```
 
 Plan highlights:

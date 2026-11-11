@@ -20,17 +20,20 @@ Usage:
   wc-companion.sh pinmap
   wc-companion.sh pinmap-json
   wc-companion.sh env
+  wc-companion.sh prepare-assets --splash <file> --background <file> [--out-dir <dir>] [--width <px>] [--height <px>]
 
 Commands:
   flash        Build + upload filesystem + flash firmware for companion profile
   pinmap       Print recommended TX/RX/SPI distribution table
   pinmap-json  Print the same mapping as JSON
   env          Print default PlatformIO environment name
+  prepare-assets  Convert splash/background images into CYD-ready RGB565 assets
 
 Examples:
   skill/wireclaw/scripts/wc-companion.sh flash --port /dev/ttyACM0
   skill/wireclaw/scripts/wc-companion.sh pinmap
   skill/wireclaw/scripts/wc-companion.sh pinmap-json
+  skill/wireclaw/scripts/wc-companion.sh prepare-assets --splash ./image-4.jpg --background ./image-2.jpg
 EOF
     exit 1
 }
@@ -162,6 +165,65 @@ cmd_flash() {
     pio run -e "$env" -t upload "${upload_args[@]}"
 }
 
+cmd_prepare_assets() {
+    local splash=""
+    local background=""
+    local out_dir="$REPO_ROOT/assets/cyd/generated"
+    local width="320"
+    local height="240"
+
+    while [ $# -gt 0 ]; do
+        case "$1" in
+            --splash)
+                shift
+                splash="${1:?--splash requires a value}"
+                ;;
+            --background)
+                shift
+                background="${1:?--background requires a value}"
+                ;;
+            --out-dir)
+                shift
+                out_dir="${1:?--out-dir requires a value}"
+                ;;
+            --width)
+                shift
+                width="${1:?--width requires a value}"
+                ;;
+            --height)
+                shift
+                height="${1:?--height requires a value}"
+                ;;
+            -*)
+                echo "Unknown prepare-assets option: $1" >&2
+                usage
+                ;;
+            *)
+                echo "Unexpected prepare-assets argument: $1" >&2
+                usage
+                ;;
+        esac
+        shift
+    done
+
+    if [ -z "$splash" ] || [ -z "$background" ]; then
+        echo "prepare-assets requires --splash <file> and --background <file>" >&2
+        exit 1
+    fi
+
+    if ! command -v python3 >/dev/null 2>&1; then
+        echo "Error: python3 is required for asset conversion." >&2
+        exit 1
+    fi
+
+    python3 "$REPO_ROOT/skill/wireclaw/scripts/wc-cyd-assets.py" \
+        --splash "$splash" \
+        --background "$background" \
+        --out-dir "$out_dir" \
+        --width "$width" \
+        --height "$height"
+}
+
 if [ $# -lt 1 ]; then
     usage
 fi
@@ -171,6 +233,7 @@ case "$1" in
     pinmap) print_pinmap_table ;;
     pinmap-json) print_pinmap_json ;;
     env) echo "$DEFAULT_ENV" ;;
+    prepare-assets) shift; cmd_prepare_assets "$@" ;;
     -h|--help) usage ;;
     *) echo "Unknown command: $1" >&2; usage ;;
 esac
