@@ -342,6 +342,7 @@ The default target is ESP32-C6. To build for a different chip, pass `-e <target>
 |--------|-------|---------|
 | ESP32-C6 | esp32-c6-devkitc-1 | `pio run` (default) |
 | ESP32-S3 | esp32-s3-devkitc-1 | `pio run -e esp32-s3` |
+| ESP32-S3 Nano Companion (CYD piggyback profile) | esp32-s3-devkitc-1 | `pio run -e esp32-s3-nano-companion` |
 | ESP32-C3 | esp32-c3-devkitm-1 | `pio run -e esp32-c3` |
 
 ```
@@ -351,6 +352,15 @@ pio device monitor     # connect via serial (115200 baud)
 ```
 
 For non-default targets, add `-e <target>` to each command (e.g. `pio run -e esp32-s3 -t upload`).
+
+For CYD 2432S028R + ESP32-S3 Nano companion wiring/flash shortcuts, use:
+
+```bash
+skill/wireclaw/scripts/wc-companion.sh pinmap
+skill/wireclaw/scripts/wc-companion.sh flash --port /dev/ttyACM0
+skill/wireclaw/scripts/wc-companion.sh prepare-assets --splash ./image-4.jpg --background ./image-2.jpg
+skill/wireclaw/scripts/wc-linkup.sh validate --device wireclaw-01 --require-auth
+```
 
 Type a message and press Enter. Or open Telegram and text your bot.
 
@@ -366,6 +376,8 @@ Type a message and press Enter. Or open Telegram and text your bot.
 | [NATS Integration](docs/NATS.md) | Virtual sensors, serial bridge, multi-device, subjects |
 | [OpenClaw Integration](docs/OPENCLAW.md) | Cross-domain automation with OpenClaw over NATS |
 | [NATS HAL](docs/HAL.md) | Direct hardware access over NATS, no LLM |
+| [CYD Companion Helper](docs/CYD-COMPANION.md) | CYD 2432S028R + ESP32-S3 Nano flash and pin distribution |
+| [Secure Link-Up](docs/LINKUP-SECURE-NETWORK.md) | WiFi/BLE/radio visibility checks, side-task transfer, Tailscale/SSH posture |
 | [Tools & Commands](docs/TOOLS.md) | All 20 LLM tools and serial commands |
 
 ## Resource Usage
